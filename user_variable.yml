@@ -39,6 +39,21 @@ debug: false
 # repositories to install OpenStack using distribution packages
 install_method: source
 
+
+openstack_host_specific_kernel_modules:
+  - name: "openvswitch"
+    pattern: "CONFIG_OPENVSWITCH"
+
+neutron_plugin_type: ml2.ovs
+neutron_ml2_drivers_type: "flat,vlan,vxlan"
+
+neutron_provider_networks:
+  network_flat_networks: "*"
+  network_types: "vxlan"
+  network_vxlan_ranges: "1:1000"
+  network_mappings: "flat:br-provider"
+  network_interface_mappings: "br-provider:eth0"
+
 ## Common Glance Overrides
 # Set glance_default_store to "swift" if using Cloud Files backend
 # or "rbd" if using ceph backend; the latter will trigger ceph to get
@@ -177,6 +192,21 @@ global_environment_variables:
 # haproxy_keepalived_internal_vip_cidr: "{{internal_lb_vip_address}}/32"
 # haproxy_keepalived_external_interface:
 # haproxy_keepalived_internal_interface:
+
+haproxy_keepalived_external_vip_cidr: "172.16.16.10/32"
+haproxy_keepalived_internal_vip_cidr: "172.16.16.9/32"
+haproxy_keepalived_external_interface: br-mgmt
+haproxy_keepalived_internal_interface: br-mgmt
+
+haproxy_stats_enabled: true
+haproxy_stats_bind_address: 0.0.0.0
+haproxy_stats_port: 1936
+haproxy_username: admin
+haproxy_stats_refresh_interval: 30
+haproxy_client_timeout: "50s"
+haproxy_connect_timeout: "30s"
+haproxy_http_request_timeout: "20s"
+haproxy_server_timeout: "50s"
 
 # Defines the default VRRP id used for keepalived with haproxy.
 # Overwrite it to your value to make sure you don't overlap
