@@ -163,6 +163,22 @@ global_environment_variables:
 
 
 ## HAProxy and keepalived
+
+haproxy_keepalived_external_vip_cidr: "172.16.140.20/32"
+haproxy_keepalived_internal_vip_cidr: "172.16.140.19/32"
+haproxy_keepalived_external_interface: br-mgmt
+haproxy_keepalived_internal_interface: br-mgmt
+
+haproxy_stats_enabled: true
+haproxy_stats_bind_address: 0.0.0.0
+haproxy_stats_port: 1936
+haproxy_username: admin
+haproxy_stats_refresh_interval: 30
+haproxy_client_timeout: "50s"
+haproxy_connect_timeout: "30s"
+haproxy_http_request_timeout: "20s"
+haproxy_server_timeout: "50s"
+
 # All the previous variables are used inside a var, in the group vars.
 # You can override the current keepalived definition (see
 # group_vars/all/keepalived.yml) in your user space if necessary.
