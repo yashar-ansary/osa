@@ -155,6 +155,9 @@ global_environment_variables:
 #   https_proxy: "{{ proxy_env_url }}"
 #   no_proxy: "localhost,127.0.0.1,{{ internal_lb_vip_address }},{{ external_lb_vip_address }},{% for host in groups['keystone_all'] %}{{ hostvars[host]['container_address'] }}{% if not loop.last %},{% endif %}{% endfor %}"
 
+galera_cluster_name: openstack_galera_cluster
+galera_cluster_members: "{{ groups['galera_all'] }}"
+galera_server_bootstrap_node: "{{ galera_cluster_members[0] }}"
 
 ## SSH connection wait time
 # If an increased delay for the ssh connection check is desired,
