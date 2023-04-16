@@ -135,6 +135,21 @@ install_method: source
 # the underlying python libraries will handle best. This proxy information will be
 # placed both on the hosts and inside the containers.
 
+
+openstack_host_specific_kernel_modules:
+  - name: "openvswitch"
+    pattern: "CONFIG_OPENVSWITCH"
+
+neutron_plugin_type: ml2.ovs
+neutron_ml2_drivers_type: "flat,vlan,vxlan"
+
+neutron_provider_networks:
+  network_flat_networks: "*"
+  network_types: "vxlan"
+  network_vxlan_ranges: "1:1000"
+  network_mappings: "flat:br-provider"
+  network_interface_mappings: "br-provider:eth0"
+
 ## Example environment variable setup:
 ## This is used by apt-cacher-ng to download apt packages:
 proxy_env_url: http://192.168.210.60:8080
@@ -155,9 +170,9 @@ global_environment_variables:
 #   https_proxy: "{{ proxy_env_url }}"
 #   no_proxy: "localhost,127.0.0.1,{{ internal_lb_vip_address }},{{ external_lb_vip_address }},{% for host in groups['keystone_all'] %}{{ hostvars[host]['container_address'] }}{% if not loop.last %},{% endif %}{% endfor %}"
 
-galera_cluster_name: openstack_galera_cluster
-galera_cluster_members: "{{ groups['galera_all'] }}"
-galera_server_bootstrap_node: "{{ galera_cluster_members[0] }}"
+# galera_cluster_name: openstack_galera_cluster
+# galera_cluster_members: "{{ groups['galera_all'] }}"
+# galera_server_bootstrap_node: "{{ galera_cluster_members[0] }}"
 
 ## SSH connection wait time
 # If an increased delay for the ssh connection check is desired,
@@ -167,8 +182,8 @@ galera_server_bootstrap_node: "{{ galera_cluster_members[0] }}"
 
 ## HAProxy and keepalived
 
-haproxy_keepalived_external_vip_cidr: "172.16.140.20/32"
-haproxy_keepalived_internal_vip_cidr: "172.16.140.19/32"
+haproxy_keepalived_external_vip_cidr: "172.16.16.10/32"
+haproxy_keepalived_internal_vip_cidr: "172.16.16.9/32"
 haproxy_keepalived_external_interface: br-mgmt
 haproxy_keepalived_internal_interface: br-mgmt
 
