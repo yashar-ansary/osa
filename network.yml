@@ -27,7 +27,7 @@ network:
     interfaces:
     - eth1
     addresses:
-    - 172.16.16.112/24
+    - 172.16.16.2/24
     gateway4:
       172.16.16.1
     nameservers:
@@ -36,7 +36,7 @@ network:
     interfaces:
     - eth2
     addresses:
-    - 172.16.17.112/24
+    - 172.16.17.2/24
    br-provider:
     interfaces:
     - eth0
@@ -44,4 +44,4 @@ network:
     interfaces:
     - eth3
     addresses:
-    - 172.16.18.112/24 
+    - 172.16.18.2/24 
