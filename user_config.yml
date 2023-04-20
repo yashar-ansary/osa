@@ -84,8 +84,7 @@ repo-infra_hosts:
     ip: 172.16.16.113
 
 # load balancer
-# Ideally the load balancer should not use the Infrastructure hosts.
-# Dedicated hardware is best for improved performance and security.
+
 haproxy_hosts:
   controller1:
     ip: 172.16.16.111
@@ -122,10 +121,7 @@ storage-infra_hosts:
     ip: 172.16.16.113
 
 # glance
-# The settings here are repeated for each infra host.
-# They could instead be applied as global settings in
-# user_variables, but are left here to illustrate that
-# each container could have different storage targets.
+
 
 image_hosts:
   controller1:
@@ -258,51 +254,3 @@ compute_hosts:
 metering-compute_hosts:
   compute-01:
     ip: 172.16.16.114
-
-
-# cinder volume hosts (NFS-backed)
-# The settings here are repeated for each infra host.
-# They could instead be applied as global settings in
-# user_variables, but are left here to illustrate that
-# each container could have different storage targets.
-
-# storage_hosts:
-#   controller1:
-#     ip: 172.16.16.111
-#     container_vars:
-#       cinder_backends:
-#         limit_container_types: cinder_volume
-#         nfs_volume:
-#           volume_backend_name: NFS_VOLUME1
-#           volume_driver: cinder.volume.drivers.nfs.NfsDriver
-#           nfs_mount_options: "rsize=65535,wsize=65535,timeo=1200,actimeo=120"
-#           nfs_shares_config: /etc/cinder/nfs_shares
-#           shares:
-#             - ip: "172.29.244.15"
-#               share: "/vol/cinder"
-#   controller2:
-#     ip: 172.16.16.112
-#     container_vars:
-#       cinder_backends:
-#         limit_container_types: cinder_volume
-#         nfs_volume:
-#           volume_backend_name: NFS_VOLUME1
-#           volume_driver: cinder.volume.drivers.nfs.NfsDriver
-#           nfs_mount_options: "rsize=65535,wsize=65535,timeo=1200,actimeo=120"
-#           nfs_shares_config: /etc/cinder/nfs_shares
-#           shares:
-#             - ip: "172.29.244.15"
-#               share: "/vol/cinder"
-#   controller3:
-#     ip: 172.16.16.113
-#     container_vars:
-#       cinder_backends:
-#         limit_container_types: cinder_volume
-#         nfs_volume:
-#           volume_backend_name: NFS_VOLUME1
-#           volume_driver: cinder.volume.drivers.nfs.NfsDriver
-#           nfs_mount_options: "rsize=65535,wsize=65535,timeo=1200,actimeo=120"
-#           nfs_shares_config: /etc/cinder/nfs_shares
-#           shares:
-#             - ip: "172.29.244.15"
-#               share: "/vol/cinder"

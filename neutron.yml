@@ -1,0 +1,8 @@
+---
+container_skel:
+  neutron_server_container:
+    properties:
+      is_metal: false
+  neutron_agents_container:
+    properties:
+      is_metal: true
