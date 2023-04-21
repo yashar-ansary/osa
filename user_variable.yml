@@ -19,6 +19,8 @@ neutron_provider_networks:
   network_types: "vxlan"
   network_vxlan_ranges: "1:1000"
   network_mappings: "flat:br-provider"
+
+  
 proxy_env_url: http://192.168.210.60:8080
 no_proxy_env: "localhost,127.0.0.1,{{ internal_lb_vip_address }},{{ external_lb_vip_address }},{% for host in groups['all_containers'] %}{{ hostvars[host]['container_address'] }}{% if not loop.last %},{% endif %}{% endfor %}"
 global_environment_variables:
