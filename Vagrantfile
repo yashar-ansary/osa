@@ -23,5 +23,24 @@ Vagrant.configure("2") do |config|
       config.vm.define "log-host" do | log |
         log.vm.box = "generic/ubuntu2004"
         log.vm.network "private_network", ip: "172.16.16.12"
-      end      
+      end 
+      blocknodeCount = 8
+      (6..blocknodeCount).each do |i|
+        config.vm.define "osd#{i}" do |blocknode|
+          blocknode.vm.box = "generic/ubuntu2004"
+    # Ceph mgmt
+          blocknode.vm.network "private_network", ip: "172.16.16.#{i}"
+    # Ceph Replicas Network
+          blocknode.vm.network "private_network", ip: "172.16.18.#{i}"
+          blocknode.vm.hostname = "osd#{i}"
+          driverletters = ('a'..'z').to_a
+          blocknode.vm.provider "libvirt" do |v|
+            (0..2).each do |d|
+              v.storage :file, :device => "hd#{driverletters[d]}", :size => '50G', :bus => "ide"
+            end
+                v.cpus = 2
+                v.memory = 2048
+          end
+        end
+      end
 end

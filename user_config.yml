@@ -5,7 +5,7 @@ cidr_networks:
   storage: 172.16.18.0/24
 
 used_ips:
-  - "172.16.16.1,172.16.16.12"
+  - "172.16.16.1,172.16.16.14"
   - "172.16.17.1,172.16.17.10"
   - "172.16.18.1,172.16.18.10"
 
@@ -98,6 +98,46 @@ log_hosts:
   log1:
     ip: 172.16.16.12
 
+### 
+### Ceph
+###
+
+# OSD nodes
+ceph-osd_hosts:
+  osd1:
+    ip: 172.16.16.6
+  osd2:
+    ip: 172.16.16.7
+  osd3:
+    ip: 172.16.16.8
+
+# ceph-mon containers
+ceph-mon_hosts: 
+  controller1:
+    ip: 172.16.16.2
+  controller2:
+    ip: 172.16.16.3
+  controller3:
+    ip: 172.16.16.4
+
+# ceph-mds containers
+ceph-mds_hosts: 
+  controller1:
+    ip: 172.16.16.2
+  controller2:
+    ip: 172.16.16.3
+  controller3:
+    ip: 172.16.16.4
+
+# ganesha-nfs hosts
+ceph-nfs_hosts: 
+  controller1:
+    ip: 172.16.16.2
+  controller2:
+    ip: 172.16.16.3
+  controller3:
+    ip: 172.16.16.4
+
 ###
 ### OpenStack
 ###
@@ -121,9 +161,15 @@ storage-infra_hosts:
     ip: 172.16.16.4
 
 # glance
-
-
 image_hosts:
+  controller1:
+    ip: 172.16.16.2
+  controller2:
+    ip: 172.16.16.3
+  controller3:
+    ip: 172.16.16.4
+
+storage_hosts:
   controller1:
     ip: 172.16.16.2
   controller2:

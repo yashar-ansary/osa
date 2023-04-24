@@ -45,3 +45,42 @@ haproxy_client_timeout: "50s"
 haproxy_connect_timeout: "30s"
 haproxy_http_request_timeout: "20s"
 haproxy_server_timeout: "50s"
+
+generate_fsid: false
+fsid: f4e63887-732a-4e2d-ac50-bfcb6218a67f
+
+monitor_address_block: "{{ cidr_networks.container }}"
+public_network: "{{ cidr_networks.container }}"
+cluster_network: "{{ cidr_networks.storage }}"
+journal_size: 10240 # size in MB
+# ceph-ansible automatically creates pools & keys for OpenStack services
+openstack_config: true
+cinder_ceph_client: cinder
+glance_ceph_client: glance
+glance_default_store: rbd
+glance_rbd_store_pool: images
+nova_libvirt_images_rbd_pool: vms
+
+ceph_origin: repository
+ceph_repository: community
+ceph_mirror: https://download.ceph.com
+ceph_stable_key: https://download.ceph.com/keys/release.asc
+ceph_stable_release: 17.2.6
+ceph_stable_repo: "{{ ceph_mirror }}/debian-{{ ceph_stable_release }}"
+
+devices:
+  - '/dev/sda'
+  - '/dev/sdb'
+  - '/dev/sdc'  
+
+
+cinder_backends:
+  rbd_volumes:
+    volume_driver: cinder.volume.drivers.rbd.RBDDriver
+    rbd_pool: volumes
+    rbd_ceph_conf: /etc/ceph/ceph.conf
+    rbd_store_chunk_size: 8
+    volume_backend_name: rbddriver
+    rbd_user: "{{ cinder_ceph_client }}"
+    rbd_secret_uuid: "{{ cinder_ceph_client_uuid }}"
+    report_discard_supported: true
