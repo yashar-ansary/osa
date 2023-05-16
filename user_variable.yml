@@ -3,6 +3,13 @@
 debug: false
 install_method: source
 
+
+cidr_networks:
+  container: 172.16.16.0/24
+  tunnel: 172.16.17.0/24
+  storage: 172.16.18.0/24
+
+  
 openstack_domain: "local.cloud"
 dhcp_domain: "home.local.cloud"
 service_region: "Tehran"
@@ -65,13 +72,13 @@ ceph_origin: repository
 ceph_repository: community
 ceph_mirror: https://download.ceph.com
 ceph_stable_key: https://download.ceph.com/keys/release.asc
-ceph_stable_release: 17.2.6
+ceph_stable_release: pacific
 ceph_stable_repo: "{{ ceph_mirror }}/debian-{{ ceph_stable_release }}"
 
 devices:
-  - '/dev/sda'
-  - '/dev/sdb'
-  - '/dev/sdc'  
+  - /dev/sda
+  - /dev/sdb
+  - /dev/sdc  
 
 
 cinder_backends:

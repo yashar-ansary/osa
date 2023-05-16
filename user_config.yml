@@ -60,6 +60,7 @@ global_overrides:
           - cinder_api
           - cinder_volume
           - nova_compute
+          - ceph-mon
 
 ###
 ### Infrastructure
@@ -67,30 +68,30 @@ global_overrides:
 
 # galera, memcache, rabbitmq, utility
 shared-infra_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # repository (apt cache, python packages, etc)
 repo-infra_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # load balancer
 
 haproxy_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # rsyslog server
@@ -113,29 +114,29 @@ ceph-osd_hosts:
 
 # ceph-mon containers
 ceph-mon_hosts: 
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # ceph-mds containers
 ceph-mds_hosts: 
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # ganesha-nfs hosts
 ceph-nfs_hosts: 
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 ###
@@ -144,126 +145,127 @@ ceph-nfs_hosts:
 
 # keystone
 identity_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # cinder api services
 storage-infra_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # glance
 image_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 storage_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
+
 
 # placement
 placement-infra_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # nova api, conductor, etc services
 compute-infra_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # heat
 orchestration_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # horizon
 dashboard_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # neutron api
 # network-infra_hosts:
-#   controller1:
+#   controller-01:
 #     ip: 172.16.16.2
-#   controller2:
+#   controller-02:
 #     ip: 172.16.16.3
-#   controller3:
+#   controller-03:
 #     ip: 172.16.16.4
 
 network_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # neutron agents (L3, DHCP, etc)
 # network-agent_hosts:
-#   controller1:
+#   controller-01:
 #     ip: 172.16.16.2
-#   controller2:
+#   controller-02:
 #     ip: 172.16.16.3
-#   controller3:
+#   controller-03:
 #     ip: 172.16.16.4
 
 # ceilometer (telemetry data collection)
 metering-infra_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # aodh (telemetry alarm service)
 metering-alarm_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # gnocchi (telemetry metrics storage)
 metrics_hosts:
-  controller1:
+  controller-01:
     ip: 172.16.16.2
-  controller2:
+  controller-02:
     ip: 172.16.16.3
-  controller3:
+  controller-03:
     ip: 172.16.16.4
 
 # nova hypervisors
